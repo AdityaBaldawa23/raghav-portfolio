@@ -858,19 +858,23 @@ function PhoneCarousel() {
   const [dragStart, setDragStart] = useState(null);
   const [dragDelta, setDragDelta] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-
-  /* ── responsive phone size ── */
+  const [screenWidth, setScreenWidth] = useState(0);
   const [phoneW, setPhoneW] = useState(520);
+
   useEffect(() => {
     const update = () => {
       const vw = window.innerWidth;
+      setScreenWidth(vw);
+
       if (vw < 480) setPhoneW(300);
       else if (vw < 640) setPhoneW(340);
       else if (vw < 900) setPhoneW(400);
       else setPhoneW(520);
     };
-    update();
+
+    update(); // initial run
     window.addEventListener("resize", update);
+
     return () => window.removeEventListener("resize", update);
   }, []);
 
@@ -970,7 +974,7 @@ function PhoneCarousel() {
           display: "grid",
           /* desktop: side-by-side | tablet+mobile: stacked */
           gridTemplateColumns:
-            phoneW >= 480 && window.innerWidth >= 900 ? "1fr auto" : "1fr",
+            phoneW >= 480 && screenWidth >= 900 ? "1fr auto" : "1fr",
           gap: "clamp(24px,4vw,48px)",
           alignItems: "center",
         }}
@@ -981,11 +985,11 @@ function PhoneCarousel() {
           <div
             style={{
               display: "flex",
-              flexDirection: window.innerWidth < 640 ? "row" : "column",
-              overflowX: window.innerWidth < 640 ? "auto" : "visible",
-              gap: window.innerWidth < 640 ? "8px" : "2px",
+              flexDirection: screenWidth < 640 ? "row" : "column",
+              overflowX: screenWidth < 640 ? "auto" : "visible",
+              gap: screenWidth < 640 ? "8px" : "2px",
               marginBottom: "clamp(24px,4vw,48px)",
-              paddingBottom: window.innerWidth < 640 ? "4px" : 0,
+              paddingBottom: screenWidth < 640 ? "4px" : 0,
               /* hide scrollbar on mobile */
               scrollbarWidth: "none",
               msOverflowStyle: "none",
@@ -1001,19 +1005,19 @@ function PhoneCarousel() {
                   cursor: "pointer",
                   textAlign: "left",
                   flexShrink: 0,
-                  padding: window.innerWidth < 640 ? "10px 14px" : "18px 24px",
+                  padding: screenWidth < 640 ? "10px 14px" : "18px 24px",
                   borderLeft:
-                    window.innerWidth >= 640
+                    screenWidth >= 640
                       ? `2px solid ${activeSet === i ? "#28deff" : "rgba(255,255,255,0.08)"}`
                       : "none",
                   borderBottom:
-                    window.innerWidth < 640
+                    screenWidth < 640
                       ? `2px solid ${activeSet === i ? "#28deff" : "rgba(255,255,255,0.08)"}`
                       : "none",
-                  borderRadius: window.innerWidth < 640 ? "6px 6px 0 0" : 0,
+                  borderRadius: screenWidth < 640 ? "6px 6px 0 0" : 0,
                   transition: "all 0.3s",
                   background:
-                    window.innerWidth < 640 && activeSet === i
+                    screenWidth < 640 && activeSet === i
                       ? "rgba(40,222,255,0.06)"
                       : "none",
                 }}
