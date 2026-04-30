@@ -23,7 +23,7 @@ import Link from "next/link";
 const PANELS = [
   {
     id: "logos",
-    href: "/Portfolio",
+    href: "/Portfolio#logo",
     index: "01",
     title: "Logo",
     titleItalic: "Design",
@@ -49,7 +49,7 @@ const PANELS = [
   },
   {
     id: "posters",
-    href: "/Portfolio",
+    href: "/Portfolio#poster",
     index: "03",
     title: "Poster",
     titleItalic: "Art",

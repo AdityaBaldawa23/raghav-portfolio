@@ -425,7 +425,7 @@ function HeroReel() {
 /* ─────────────────────────────────────────────
    LOGO SHOWCASE
 ───────────────────────────────────────────── */
-function LogoShowcase() {
+function LogoShowcase({id}) {
   const [hovered, setHovered] = useState(null);
   const [modal, setModal] = useState(null);
 
@@ -436,6 +436,8 @@ function LogoShowcase() {
         padding: "100px clamp(24px, 6vw, 80px) 110px",
         borderTop: "1px solid rgba(255,255,255,0.04)",
       }}
+
+      id={id}
     >
       {/* Modal */}
       {modal !== null && (
@@ -690,7 +692,7 @@ function LogoShowcase() {
 /* ─────────────────────────────────────────────
    POSTER WALL
 ───────────────────────────────────────────── */
-function PosterWall() {
+function PosterWall({id}) {
   const [hovered, setHovered] = useState(null);
   const rotations = [-1.5, 0.8, -0.5, 1.2, -0.9, 0.4, -1.1, 0.7, -0.3];
 
@@ -701,6 +703,7 @@ function PosterWall() {
         padding: "100px clamp(24px, 6vw, 80px) 110px",
         borderTop: "1px solid rgba(255,255,255,0.04)",
       }}
+      id={id}
     >
       <div
         style={{
@@ -1372,8 +1375,8 @@ export default function WorkPage() {
       `}</style>
       <main>
         <HeroReel />
-        <LogoShowcase />
-        <PosterWall />
+        <LogoShowcase id="logo" />
+        <PosterWall id="poster"/>
         <PhoneCarousel />
       </main>
     </>
