@@ -1,11 +1,14 @@
 import HeroSection from "@/Components/UI/HeroSec";
-import Portfolio from "@/Components/UI/Portfolio";
+import Portfolio from "@/Components/Helpers/Portfolio";
+import WorkSection from "@/Components/UI/FeaturedWork";
+import ContactSection from "@/Components/UI/ContactForm";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <Portfolio />
+      <WorkSection />
+      <ContactSection id="contact"/>
     </>
   );
 }
