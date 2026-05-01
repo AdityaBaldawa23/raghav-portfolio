@@ -6,31 +6,13 @@ import Link from "next/link";
 // ── SVG Icons (inline, no dependency) ──────────────────────────────────────
 const icons = {
   Home: (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z" />
       <path d="M9 21V12h6v9" />
     </svg>
   ),
   Work: (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="7" width="20" height="14" rx="2" />
       <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
       <line x1="12" y1="12" x2="12" y2="16" />
@@ -38,16 +20,7 @@ const icons = {
     </svg>
   ),
   Skills: (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="3" width="7" height="7" rx="1.5" />
       <rect x="14" y="3" width="7" height="7" rx="1.5" />
       <rect x="3" y="14" width="7" height="7" rx="1.5" />
@@ -55,16 +28,7 @@ const icons = {
     </svg>
   ),
   About: (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="3" width="7" height="7" rx="1" />
       <rect x="14" y="3" width="7" height="7" rx="1" />
       <rect x="3" y="14" width="7" height="7" rx="1" />
@@ -72,45 +36,27 @@ const icons = {
     </svg>
   ),
   Contact: (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="8" r="4" />
       <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
     </svg>
   ),
   Branding: (
-  <svg
-    width="22"
-    height="22"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.7"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M12 3l9 5-9 5-9-5 9-5z" />
-    <path d="M3 12l9 5 9-5" />
-    <path d="M3 17l9 5 9-5" />
-  </svg>
-),
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3l9 5-9 5-9-5 9-5z" />
+      <path d="M3 12l9 5 9-5" />
+      <path d="M3 17l9 5 9-5" />
+    </svg>
+  ),
 };
 
 const NAV_ITEMS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/About" },
-  { label: "Skills", href: "/Skill" },
-  { label: "Work", href: "/Portfolio" },
+  { label: "Home",     href: "/" },
+  { label: "About",    href: "/About" },
+  { label: "Skills",   href: "/Skill" },
+  { label: "Work",     href: "/Portfolio" },
   { label: "Branding", href: "/Branding" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact",  href: "/#contact" },
 ];
 
 export default function LiquidGlassNavbar() {
@@ -119,7 +65,6 @@ export default function LiquidGlassNavbar() {
   return (
     <>
       <style>{`
-        /* Light streak that sweeps across the pill */
         @keyframes streaksweep {
           0%   { transform: translateX(-120%) skewX(-12deg); opacity: 0; }
           15%  { opacity: 1; }
@@ -131,7 +76,6 @@ export default function LiquidGlassNavbar() {
           animation-delay: 1.5s;
         }
 
-        /* Active item pill bounce */
         @keyframes pillpop {
           0%   { transform: scale(0.88); opacity: 0; }
           60%  { transform: scale(1.04); }
@@ -139,35 +83,68 @@ export default function LiquidGlassNavbar() {
         }
         .pill-pop { animation: pillpop 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards; }
 
-        /* Nav item hover glow */
         .nav-item:hover .nav-icon { filter: drop-shadow(0 0 6px rgba(160,210,255,0.7)); }
         .nav-item:hover .nav-label {
           color: rgba(255,255,255,0.95) !important;
           text-shadow: 0 0 12px rgba(160,210,255,0.6);
         }
-
-        /* Active icon white glow */
         .nav-item.active .nav-icon {
           filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
         }
-
-        /* Scale on press */
         .nav-item:active { transform: scale(0.93); }
         .nav-item { transition: transform 0.18s ease; }
+
+        /* Mobile scaling */
+        .nav-pill-item {
+          padding: 8px 10px;
+          min-width: 48px;
+        }
+        .nav-icon-wrap svg {
+          width: 18px;
+          height: 18px;
+        }
+        .nav-label-text {
+          font-size: 0.58rem;
+        }
+
+        @media (min-width: 480px) {
+          .nav-pill-item {
+            padding: 9px 14px;
+            min-width: 60px;
+          }
+          .nav-icon-wrap svg {
+            width: 20px;
+            height: 20px;
+          }
+          .nav-label-text {
+            font-size: 0.63rem;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .nav-pill-item {
+            padding: 10px 20px;
+            min-width: 72px;
+          }
+          .nav-icon-wrap svg {
+            width: 22px;
+            height: 22px;
+          }
+          .nav-label-text {
+            font-size: 0.68rem;
+          }
+        }
       `}</style>
 
-      {/*
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        FLOATING PILL NAVBAR
-        Fixed, centered, bottom of screen
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      */}
-      <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
-        {/* ── Outer pill — the glass capsule ── */}
+      <nav
+        className="fixed top-8 left-1/2 z-50"
+        style={{ transform: "translateX(-50%)", width: "max-content", maxWidth: "calc(100vw - 24px)" }}
+      >
         <div
-          className="relative flex items-center px-3 py-2.5 rounded-full overflow-hidden"
+          className="relative flex items-center rounded-full overflow-hidden"
           style={{
-            /* Glass surface */
+            padding: "10px 6px",
+            gap: "2px",
             background: `linear-gradient(
               160deg,
               rgba(255,255,255,0.13) 0%,
@@ -177,8 +154,6 @@ export default function LiquidGlassNavbar() {
             backdropFilter: "blur(28px) saturate(180%) brightness(1.12)",
             WebkitBackdropFilter: "blur(28px) saturate(180%) brightness(1.12)",
             border: "1px solid rgba(255,255,255,0.22)",
-
-            gap: "4px",
           }}
         >
           {/* Top refraction edge */}
@@ -200,25 +175,23 @@ export default function LiquidGlassNavbar() {
             }}
           />
 
-          {/* ── Nav items ── */}
+          {/* Nav items */}
           {NAV_ITEMS.map((item) => {
-            const isActive = active === item;
+            const isActive = active === item.label;
             return (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setActive(item.label)}
-                className={`nav-item ${isActive ? "active" : ""} relative flex flex-col items-center justify-center gap-1 cursor-pointer border-0 bg-transparent`}
+                className={`nav-item nav-pill-item ${isActive ? "active" : ""} relative flex flex-col items-center justify-center gap-1 cursor-pointer border-0 bg-transparent`}
                 style={{
-                  padding: "10px 20px",
                   borderRadius: "50px",
-                  minWidth: "72px",
                   outline: "none",
                   WebkitTapHighlightColor: "transparent",
                 }}
-                aria-label={item}
+                aria-label={item.label}
               >
-                {/* Active item — dark inset pill (exactly like the reference) */}
+                {/* Active pill */}
                 {isActive && (
                   <span
                     className="pill-pop absolute inset-0 rounded-full"
@@ -237,7 +210,7 @@ export default function LiquidGlassNavbar() {
 
                 {/* Icon */}
                 <span
-                  className="nav-icon relative z-10 transition-all duration-300"
+                  className="nav-icon nav-icon-wrap relative z-10 transition-all duration-300"
                   style={{
                     color: isActive
                       ? "rgba(255,255,255,0.96)"
@@ -249,10 +222,9 @@ export default function LiquidGlassNavbar() {
 
                 {/* Label */}
                 <span
-                  className="nav-label relative z-10 font-medium select-none transition-all duration-300"
+                  className="nav-label nav-label-text relative z-10 font-medium select-none transition-all duration-300"
                   style={{
                     fontFamily: "var(--font-body)",
-                    fontSize: "0.68rem",
                     letterSpacing: "0.03em",
                     color: isActive
                       ? "rgba(255,255,255,0.95)"

@@ -343,10 +343,7 @@ function HeroReel() {
                   style={{
                     aspectRatio: "3/4",
                     overflow: "hidden",
-                    background: "#111",
-                    boxShadow: isActive
-                      ? "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,160,106,0.15)"
-                      : "0 8px 30px rgba(0,0,0,0.4)",
+                    background: "none",
                   }}
                 >
                   <img
@@ -355,7 +352,7 @@ function HeroReel() {
                     style={{
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover",
+                      objectFit: "contain",
                       display: "block",
                       pointerEvents: "none",
                     }}

@@ -17,9 +17,9 @@ import Link from "next/link";
 
 const NAV_LINKS = [
   { label: "Home",    href: "/" },
-  { label: "Work",    href: "/work" },
-  { label: "About",   href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Work",    href: "/Portfolio" },
+  { label: "About",   href: "/About" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const SOCIAL_LINKS = [

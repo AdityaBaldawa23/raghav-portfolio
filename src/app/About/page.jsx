@@ -6,17 +6,9 @@ import { useState } from "react";
 const C = "#52deff";
 const Y = "#ffff00";
 
-// const glow = (color, spread = 24) => ({
-//   boxShadow: `0 0 ${spread}px 2px ${color}55, 0 0 ${spread * 2.5}px 4px ${color}22`,
-// });
-// c(color) => ({
-//   textShadow: `0 0 20px ${color}dd, 0 0 50px ${color}55`,
-// });
-
 export default function AboutMe() {
   const [activePersona, setActivePersona] = useState(null);
   const [hoveredHobby, setHoveredHobby] = useState(null);
-
 
   const hobbies = [
     {
@@ -63,51 +55,20 @@ export default function AboutMe() {
     },
   ];
 
-  const fusions = [
-    { game: "Level Design", design: "Information Architecture" },
-    { game: "HUD Clarity", design: "UI Hierarchy" },
-    { game: "Speedrunning", design: "Design Sprints" },
-    { game: "World-Building", design: "Brand Universes" },
-  ];
-
-  const styleWords = [
-    {
-      word: "MINIMAL",
-      sub: "No clutter. Ever.",
-      color: C,
-      span: "md:col-span-2",
-    },
-    { word: "BOLD", sub: "Make it land.", color: C, span: "" },
-    { word: "RAW", sub: "Authentic ≠ messy.", color: Y, span: "" },
-    { word: "PRECISE", sub: "8px grid always.", color: C, span: "" },
-    { word: "DARK", sub: "Light mode is a myth.", color: Y, span: "" },
-    {
-      word: "EXPERIMENTAL",
-      sub: "Rules ≠ limits.",
-      color: Y,
-      span: "md:col-span-2",
-    },
-  ];
-
   return (
     <div
       className="min-h-screen w-full text-white overflow-x-hidden"
       style={{ background: "#050505", fontFamily: "var(--font-body)" }}
     >
       {/* ═══════════════ HERO ═══════════════ */}
-      {/* ═══════════════ HERO ═══════════════ */}
       <section
         style={{
           position: "relative",
-          minHeight: "100vh",
           background: "#080808",
           overflow: "hidden",
-          display: "flex",
-          alignItems: "stretch",
           fontFamily: "var(--font-body)",
         }}
       >
-        {/* Google Fonts */}
         <style>{`
           .hero-scanning-line {
             position: absolute;
@@ -124,14 +85,12 @@ export default function AboutMe() {
             95%  { opacity: 1; }
             100% { top: 100%; opacity: 0; }
           }
-
           .hero-name-word {
             transition: letter-spacing 0.4s ease;
           }
           .hero-name-word:hover {
             letter-spacing: 0.08em;
           }
-
           .hero-tag {
             font-size: 9px;
             letter-spacing: 0.28em;
@@ -145,6 +104,87 @@ export default function AboutMe() {
           .hero-tag:hover {
             transform: translateY(-2px);
             opacity: 1 !important;
+          }
+
+          /* Mobile hero layout */
+          .hero-inner {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
+          .hero-left {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            padding: 60px 24px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .hero-image-wrap {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            height: 360px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+          }
+          .hero-lvl-badge {
+            position: absolute;
+            z-index: 12;
+            right: 16px;
+            top: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+          }
+
+          /* Tablet+ */
+          @media (min-width: 768px) {
+            .hero-inner {
+              flex-direction: row;
+              align-items: stretch;
+              min-height: 100vh;
+            }
+            .hero-left {
+              width: 60%;
+              padding: 60px 0 60px 40px;
+            }
+            .hero-image-wrap {
+              width: 40%;
+              height: auto;
+              position: absolute;
+              right: 0;
+              top: 0;
+              bottom: 0;
+            }
+            .hero-lvl-badge {
+              right: 3%;
+              top: 16%;
+            }
+          }
+
+          @media (min-width: 1024px) {
+            .hero-left {
+              padding: 60px 0 60px 52px;
+            }
+          }
+
+          /* Diagonal panel — hide on mobile, show md+ */
+          .hero-diagonal-panel { display: none; }
+          .hero-diagonal-line  { display: none; }
+          @media (min-width: 768px) {
+            .hero-diagonal-panel { display: block; }
+            .hero-diagonal-line  { display: block; }
+          }
+
+          /* Rotated side label — hide on small */
+          .hero-rotated-label { display: none; }
+          @media (min-width: 1024px) {
+            .hero-rotated-label { display: block; }
           }
         `}</style>
 
@@ -172,8 +212,9 @@ export default function AboutMe() {
           }}
         />
 
-        {/* Diagonal right panel — shifted to start at ~60% */}
+        {/* Diagonal right panel */}
         <div
+          className="hero-diagonal-panel"
           style={{
             position: "absolute",
             top: 0,
@@ -188,6 +229,7 @@ export default function AboutMe() {
 
         {/* Diagonal accent line */}
         <div
+          className="hero-diagonal-line"
           style={{
             position: "absolute",
             top: 0,
@@ -230,79 +272,12 @@ export default function AboutMe() {
           }}
         />
 
-        {/* Ghost "ASAWA" behind image */}
-        <div
-          style={{
-            position: "absolute",
-            fontFamily: "var(--font-heading)",
-            fontWeight: 300,
-            fontSize: "clamp(80px, 14vw, 150px)",
-            lineHeight: 1,
-            letterSpacing: "0.02em",
-            pointerEvents: "none",
-            zIndex: 4,
-            right: "2%",
-            bottom: -8,
-            color: "transparent",
-            WebkitTextStroke: "1px rgba(40,255,255,0.4)",
-            whiteSpace: "nowrap",
-            userSelect: "none",
-          }}
-        >
-          ASAWA
-        </div>
-
-        {/* Image zone — 40% wide, pinned right */}
-        <div
-          style={{
-            position: "absolute",
-            right: 0,
-            top: 0,
-            bottom: 0,
-            width: "40%",
-            zIndex: 5,
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "center",
-            pointerEvents: "none",
-          }}
-        >
-          <img
-            src="/Images/Gamer side1.png"
-            alt="Raghav Asawa"
-            style={{
-              height: "100%",
-              width: "100%",
-              objectFit: "contain",
-              objectPosition: "center bottom",
-              filter: "contrast(1.05) brightness(0.95)",
-              maskImage:
-                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.05) 6%, black 18%, black 82%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
-              maskComposite: "intersect",
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.05) 6%, black 18%, black 82%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
-              WebkitMaskComposite: "source-in",
-            }}
-          />
-        </div>
-
-        {/* LVL stat — floating top-right */}
-        <div
-          style={{
-            position: "absolute",
-            zIndex: 12,
-            right: "3%",
-            top: "16%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-end",
-            gap: 2,
-          }}
-        >
+        {/* LVL badge */}
+        <div className="hero-lvl-badge">
           <span
             style={{
               fontFamily: "var(--font-heading)",
-              fontSize: 48,
+              fontSize: "clamp(28px, 5vw, 48px)",
               lineHeight: 1,
               color: "#ffff00",
               letterSpacing: "0.04em",
@@ -312,7 +287,7 @@ export default function AboutMe() {
           </span>
           <span
             style={{
-              fontSize: 12,
+              fontSize: "clamp(8px, 1.5vw, 12px)",
               letterSpacing: "0.35em",
               color: "#ffffff",
               textTransform: "uppercase",
@@ -323,8 +298,9 @@ export default function AboutMe() {
           </span>
         </div>
 
-        {/* Rotated side label — sits near the diagonal boundary */}
+        {/* Rotated side label */}
         <div
+          className="hero-rotated-label"
           style={{
             position: "absolute",
             left: "60%",
@@ -357,165 +333,182 @@ export default function AboutMe() {
           }}
         />
 
-        {/* ── LEFT COLUMN — 60% wide ── */}
-        <div
-          style={{
-            position: "relative",
-            zIndex: 10,
-            width: "60%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            padding: "60px 0 60px 52px",
-          }}
-        >
-          {/* Eyebrow */}
-          <div
-            style={{
-              fontSize: 10,
-              letterSpacing: "0.45em",
-              color: "#28deff",
-              marginBottom: 28,
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              fontWeight: 300,
-              textTransform: "uppercase",
-            }}
-          >
-            <span
+        {/* Hero inner layout */}
+        <div className="hero-inner">
+          {/* LEFT COLUMN */}
+          <div className="hero-left">
+            {/* Eyebrow */}
+            <div
               style={{
-                display: "block",
-                width: 28,
-                height: 1,
-                background: "#28deff",
-                opacity: 0.5,
-                flexShrink: 0,
+                fontSize: 10,
+                letterSpacing: "0.45em",
+                color: "#28deff",
+                marginBottom: 28,
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                fontWeight: 300,
+                textTransform: "uppercase",
+              }}
+            >
+              <span
+                style={{
+                  display: "block",
+                  width: 28,
+                  height: 1,
+                  background: "#28deff",
+                  opacity: 0.5,
+                  flexShrink: 0,
+                }}
+              />
+              Raghav Asawa
+            </div>
+
+            {/* Big headline */}
+            <h1
+              style={{
+                fontFamily: "var(--font-heading)",
+                fontWeight: 300,
+                fontSize: "clamp(52px, 10vw, 112px)",
+                lineHeight: 0.88,
+                margin: "0 0 4px",
+                letterSpacing: "0.01em",
+                cursor: "default",
+                userSelect: "none",
+              }}
+            >
+              <span
+                className="hero-name-word"
+                style={{ display: "block", color: "#f2f2f2" }}
+              >
+                DESIGN
+              </span>
+              <span
+                className="hero-name-word"
+                style={{ display: "block", color: "#28deff" }}
+              >
+                THAT
+              </span>
+              <span
+                className="hero-name-word"
+                style={{ display: "block", color: "#f2f2f2" }}
+              >
+                HITS.
+              </span>
+            </h1>
+
+            {/* Role line */}
+            <p
+              style={{
+                fontSize: "clamp(8px, 1.5vw, 10px)",
+                letterSpacing: "0.3em",
+                color: "#ffffff",
+                margin: "18px 0 0",
+                fontWeight: 300,
+                textTransform: "uppercase",
+              }}
+            >
+              Graphic Designer · Gamer · Frame Builder
+            </p>
+
+            {/* Tags */}
+            <div
+              style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 28 }}
+            >
+              {[
+                { label: "Visual Editor", color: "#28deff" },
+                { label: "FPS Grinder", color: "#ffff00" },
+                { label: "Type Obsessed", color: "#28deff" },
+                { label: "Dark Mode Only", color: "#ffff00" },
+              ].map(({ label, color }) => (
+                <span
+                  key={label}
+                  className="hero-tag"
+                  style={{
+                    borderColor: `${color}33`,
+                    color: `${color}aa`,
+                    opacity: 0.85,
+                  }}
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+
+            {/* Description */}
+            <p
+              style={{
+                marginTop: 26,
+                fontSize: "clamp(11px, 1.5vw, 12px)",
+                lineHeight: 1.9,
+                color: "#ffffff",
+                maxWidth: 300,
+                fontWeight: 300,
+              }}
+            >
+              Crafting interfaces by day.
+              <br />
+              Surviving{" "}
+              <em style={{ fontStyle: "italic", color: "#ffff00" }}>Sekiro</em>,
+              clutching{" "}
+              <em style={{ fontStyle: "italic", color: "#28deff" }}>Valorant</em>,
+              <br />
+              exploring{" "}
+              <em style={{ fontStyle: "italic", color: "#ffff00" }}>Palworld</em> by
+              night.
+              <br />
+              <br />
+              My cursor is both a tool and a weapon.
+            </p>
+          </div>
+
+          {/* IMAGE — inline on mobile, absolute on md+ */}
+          <div className="hero-image-wrap">
+            <img
+              src="/Images/Gamer side1.png"
+              alt="Raghav Asawa"
+              style={{
+                height: "100%",
+                width: "100%",
+                objectFit: "contain",
+                objectPosition: "center bottom",
+                filter: "contrast(1.05) brightness(0.95)",
+                maskImage:
+                  "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.05) 6%, black 18%, black 82%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
+                maskComposite: "intersect",
+                WebkitMaskImage:
+                  "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.05) 6%, black 18%, black 82%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
+                WebkitMaskComposite: "source-in",
               }}
             />
-            Raghav Asawa
           </div>
-
-          {/* Big headline */}
-          <h1
-            style={{
-              fontFamily: "var(--font-heading)",
-              fontWeight: 300,
-              fontSize: "clamp(72px, 10vw, 112px)",
-              lineHeight: 0.88,
-              margin: "0 0 4px",
-              letterSpacing: "0.01em",
-              cursor: "default",
-              userSelect: "none",
-            }}
-          >
-            <span
-              className="hero-name-word"
-              style={{ display: "block", color: "#f2f2f2" }}
-            >
-              DESIGN
-            </span>
-            <span
-              className="hero-name-word"
-              style={{ display: "block", color: "#28deff" }}
-            >
-              THAT
-            </span>
-            <span
-              className="hero-name-word"
-              style={{ display: "block", color: "#f2f2f2" }}
-            >
-              HITS.
-            </span>
-          </h1>
-
-          {/* Role line */}
-          <p
-            style={{
-              fontSize: 10,
-              letterSpacing: "0.3em",
-              color: "#ffffff",
-              margin: "18px 0 0",
-              fontWeight: 300,
-              textTransform: "uppercase",
-            }}
-          >
-            Graphic Designer · Gamer · Frame Builder
-          </p>
-
-          {/* Tags */}
-          <div
-            style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 28 }}
-          >
-            {[
-              { label: "Visual Editor", color: "#28deff" },
-              { label: "FPS Grinder", color: "#ffff00" },
-              { label: "Type Obsessed", color: "#28deff" },
-              { label: "Dark Mode Only", color: "#ffff00" },
-            ].map(({ label, color }) => (
-              <span
-                key={label}
-                className="hero-tag"
-                style={{
-                  borderColor: `${color}33`,
-                  color: `${color}aa`,
-                  opacity: 0.85,
-                }}
-              >
-                {label}
-              </span>
-            ))}
-          </div>
-
-          {/* Description */}
-          <p
-            style={{
-              marginTop: 26,
-              fontSize: 12,
-              lineHeight: 1.9,
-              color: "#ffffff",
-              maxWidth: 300,
-              fontWeight: 300,
-            }}
-          >
-            Crafting interfaces by day.
-            <br />
-            Surviving{" "}
-            <em style={{ fontStyle: "italic", color: "#ffff00" }}>Sekiro</em>,
-            clutching{" "}
-            <em style={{ fontStyle: "italic", color: "#28deff" }}>Valorant</em>,
-            <br />
-            exploring{" "}
-            <em style={{ fontStyle: "italic", color: "#ffff00" }}>Palworld</em> by
-            night.
-            <br />
-            <br />
-            My cursor is both a tool and a weapon.
-          </p>
         </div>
       </section>
+
       {/* ═══════════════ DUAL PERSONALITY ═══════════════ */}
-      <section className="px-6 mt-8" style={{ background: "none" }}>
+      <section className="px-4 sm:px-6 mt-8" style={{ background: "none" }}>
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <p
               className="text-xs tracking-[0.4em] mb-4"
               style={{ color: "#ffffff" }}
             >
               DUAL CORE PROCESSOR
             </p>
-            <h2 className="text-4xl md:text-6xl font-black">
+            <h2
+              style={{ fontSize: "clamp(28px, 6vw, 60px)", fontWeight: 900, lineHeight: 1.1 }}
+            >
               One Mind. Two Modes.
             </h2>
           </div>
 
           <div
-            className="grid md:grid-cols-2 gap-px rounded-2xl overflow-hidden"
+            className="grid grid-cols-1 md:grid-cols-2 gap-px rounded-2xl overflow-hidden"
             style={{ background: "#1a1a1a" }}
           >
-            {/* MODE 01 — DESIGNER — CYAN */}
+            {/* MODE 01 — DESIGNER */}
             <div
-              className="relative p-10 md:p-14 cursor-default transition-all duration-500 group"
+              className="relative p-8 md:p-10 lg:p-14 cursor-default transition-all duration-500 group"
               style={{ background: "#050505" }}
               onMouseEnter={() => setActivePersona("designer")}
               onMouseLeave={() => setActivePersona(null)}
@@ -533,25 +526,23 @@ export default function AboutMe() {
                 }}
               />
               <div className="relative z-10">
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center justify-between mb-6 md:mb-8">
                   <span
                     className="text-xs tracking-[0.3em] px-3 py-1.5 rounded-full border font-bold transition-all duration-300"
                     style={{
                       color: activePersona === "designer" ? C : "#333",
-                      borderColor:
-                        activePersona === "designer" ? `${C}55` : "#222",
-                      background:
-                        activePersona === "designer" ? `${C}10` : "transparent",
+                      borderColor: activePersona === "designer" ? `${C}55` : "#222",
+                      background: activePersona === "designer" ? `${C}10` : "transparent",
                     }}
                   >
                     MODE 01
                   </span>
                 </div>
                 <h3
-                  className="text-5xl md:text-6xl font-black mb-5 transition-all duration-400"
+                  className="font-black mb-4 md:mb-5 transition-all duration-400"
                   style={{
+                    fontSize: "clamp(36px, 6vw, 60px)",
                     color: activePersona === "designer" ? C : "#252525",
-                    ...(activePersona === "designer" ? {} : {}),
                   }}
                 >
                   THE
@@ -559,7 +550,7 @@ export default function AboutMe() {
                   DESIGNER
                 </h3>
                 <p
-                  className="text-sm leading-relaxed mb-8 max-w-sm"
+                  className="text-sm leading-relaxed mb-6 md:mb-8 max-w-sm"
                   style={{ color: "#666" }}
                 >
                   I design and edit across different things, not just one type.
@@ -568,13 +559,7 @@ export default function AboutMe() {
                   impactful. I keep adjusting till it actually looks right.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {[
-                    "Editing",
-                    "Visual Design",
-                    "Typography",
-                    "Layouts",
-                    "Creative Work",
-                  ].map((d) => (
+                  {["Editing", "Visual Design", "Typography", "Layouts", "Creative Work"].map((d) => (
                     <span
                       key={d}
                       className="text-xs px-3 py-1.5 rounded-full border transition-all duration-200 hover:scale-105"
@@ -600,9 +585,9 @@ export default function AboutMe() {
               />
             </div>
 
-            {/* MODE 02 — GAMER — YELLOW */}
+            {/* MODE 02 — GAMER */}
             <div
-              className="relative p-10 md:p-14 cursor-default transition-all duration-500 group"
+              className="relative p-8 md:p-10 lg:p-14 cursor-default transition-all duration-500 group"
               style={{ background: "#050505" }}
               onMouseEnter={() => setActivePersona("gamer")}
               onMouseLeave={() => setActivePersona(null)}
@@ -620,25 +605,23 @@ export default function AboutMe() {
                 }}
               />
               <div className="relative z-10">
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center justify-between mb-6 md:mb-8">
                   <span
                     className="text-xs tracking-[0.3em] px-3 py-1.5 rounded-full border font-bold transition-all duration-300"
                     style={{
                       color: activePersona === "gamer" ? Y : "#333",
-                      borderColor:
-                        activePersona === "gamer" ? `${Y}55` : "#222",
-                      background:
-                        activePersona === "gamer" ? `${Y}10` : "transparent",
+                      borderColor: activePersona === "gamer" ? `${Y}55` : "#222",
+                      background: activePersona === "gamer" ? `${Y}10` : "transparent",
                     }}
                   >
                     MODE 02
                   </span>
                 </div>
                 <h3
-                  className="text-5xl md:text-6xl font-black mb-5 transition-all duration-400"
+                  className="font-black mb-4 md:mb-5 transition-all duration-400"
                   style={{
+                    fontSize: "clamp(36px, 6vw, 60px)",
                     color: activePersona === "gamer" ? Y : "#252525",
-                    ...(activePersona === "gamer" ? {} : {}),
                   }}
                 >
                   THE
@@ -646,22 +629,16 @@ export default function AboutMe() {
                   GAMER
                 </h3>
                 <p
-                  className="text-sm leading-relaxed mb-8 max-w-sm"
+                  className="text-sm leading-relaxed mb-6 md:mb-8 max-w-sm"
                   style={{ color: "#666" }}
                 >
                   I play a lot, mainly FPS and open-world games like Sekiro,
                   Valorant, Palworld, and Minecraft. I enjoy the grind, learning
                   patterns, and improving over time. Losing is fine, I just
-                  don’t stop till I get it right.
+                  don't stop till I get it right.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {[
-                    "Sekiro",
-                    "Valorant",
-                    "Palworld",
-                    "Minecraft",
-                    "FPS & Survival",
-                  ].map((g) => (
+                  {["Sekiro", "Valorant", "Palworld", "Minecraft", "FPS & Survival"].map((g) => (
                     <span
                       key={g}
                       className="text-xs px-3 py-1.5 rounded-full border transition-all duration-200 hover:scale-105"
@@ -690,40 +667,50 @@ export default function AboutMe() {
         </div>
       </section>
 
-      {/* ═══════════════ Time Line ═══════════════ */}
-
-      <TimelineDemo />
+      {/* ═══════════════ TIMELINE ═══════════════ */}
+      <div className="w-full overflow-x-hidden">
+        <TimelineDemo />
+      </div>
 
       {/* ═══════════════ HOBBIES ═══════════════ */}
-      <section className="py-12 px-6" style={{ background: "#050505" }}>
+      <section className="py-10 md:py-12 px-4 sm:px-6" style={{ background: "#050505" }}>
         <div className="max-w-6xl mx-auto">
-          <div className="mb-14">
+          <div className="mb-10 md:mb-14">
             <p
               className="text-xs tracking-[0.4em] mb-2"
               style={{ color: "#444" }}
             >
               OFFLINE ACTIVITIES
             </p>
-            <h2 className="text-4xl md:text-5xl font-black">
+            <h2
+              style={{ fontSize: "clamp(28px, 5vw, 48px)", fontWeight: 900, lineHeight: 1.1 }}
+            >
               When Not Working
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hobbies.map(({ name, type, icon, desc, color }, i) => (
               <div
                 key={name}
-                className="group relative p-7 rounded-2xl border cursor-default transition-all duration-400 hover:-translate-y-3"
+                className="group relative p-6 md:p-7 rounded-2xl border cursor-default transition-all duration-400"
                 style={{
                   borderColor: hoveredHobby === i ? `${color}44` : `${color}18`,
                   background: hoveredHobby === i ? `${color}08` : "#080808",
+                  transform: hoveredHobby === i ? "translateY(-8px)" : "translateY(0)",
+                  transition: "transform 0.4s ease, border-color 0.4s ease, background 0.4s ease",
                 }}
                 onMouseEnter={() => setHoveredHobby(i)}
                 onMouseLeave={() => setHoveredHobby(null)}
               >
                 <div className="flex items-start justify-between mb-5">
                   <span
-                    className="text-3xl font-black transition-all duration-300 group-hover:scale-125"
-                    style={{ color: hoveredHobby === i ? color : "#333" }}
+                    className="text-3xl font-black transition-all duration-300"
+                    style={{
+                      color: hoveredHobby === i ? color : "#333",
+                      transform: hoveredHobby === i ? "scale(1.25)" : "scale(1)",
+                      display: "inline-block",
+                      transition: "color 0.3s, transform 0.3s",
+                    }}
                   >
                     {icon}
                   </span>
@@ -738,16 +725,10 @@ export default function AboutMe() {
                     {type === "gamer" ? "⚡ GAMER" : "✦ DESIGN"}
                   </span>
                 </div>
-                <div
-                  className="font-bold text-sm mb-1.5"
-                  style={{ color: "#ddd" }}
-                >
+                <div className="font-bold text-sm mb-1.5" style={{ color: "#ddd" }}>
                   {name}
                 </div>
-                <div
-                  className="text-xs leading-relaxed"
-                  style={{ color: "#555" }}
-                >
+                <div className="text-xs leading-relaxed" style={{ color: "#555" }}>
                   {desc}
                 </div>
                 <div
@@ -763,16 +744,18 @@ export default function AboutMe() {
       </section>
 
       {/* ═══════════════ CURRENT MISSION ═══════════════ */}
-      <section className="py-16 px-6" style={{ background: "#080808" }}>
+      <section className="py-12 md:py-16 px-4 sm:px-6" style={{ background: "#080808" }}>
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p
               className="text-xs tracking-[0.4em] mb-2"
               style={{ color: "#444" }}
             >
               ACTIVE QUEST
             </p>
-            <h2 className="text-4xl md:text-6xl font-black">
+            <h2
+              style={{ fontSize: "clamp(28px, 6vw, 60px)", fontWeight: 900, lineHeight: 1.1 }}
+            >
               Current Mission
             </h2>
           </div>
@@ -784,12 +767,12 @@ export default function AboutMe() {
             }}
           >
             <div
-              className="rounded-2xl p-8 md:p-14"
+              className="rounded-2xl p-6 sm:p-8 md:p-14"
               style={{ background: "#060606" }}
             >
-              <div className="flex items-start gap-5 mb-10">
+              <div className="flex items-start gap-4 md:gap-5 mb-8 md:mb-10">
                 <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-black shrink-0"
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center text-xl md:text-2xl font-black shrink-0"
                   style={{
                     background: `${C}18`,
                     color: C,
@@ -806,7 +789,7 @@ export default function AboutMe() {
                     MAIN QUEST — PRIORITY: LEGENDARY
                   </div>
                   <div
-                    className="text-lg md:text-xl font-black"
+                    className="text-base md:text-xl font-black"
                     style={{ color: "#eee" }}
                   >
                     Build the portfolio that breaks the internet (respectfully).
@@ -814,7 +797,7 @@ export default function AboutMe() {
                 </div>
               </div>
 
-              <div className="space-y-4 mb-10">
+              <div className="space-y-4 mb-8 md:mb-10">
                 {[
                   {
                     obj: "Destroyed my sleep schedule and still functioning somehow.",
@@ -832,7 +815,7 @@ export default function AboutMe() {
                     color: Y,
                   },
                   {
-                    obj: "Earn money while saying “I was just playing games.",
+                    obj: "Earn money while saying I was just playing games.",
                     done: false,
                     color: Y,
                   },
@@ -842,7 +825,7 @@ export default function AboutMe() {
                     color: Y,
                   },
                 ].map(({ obj, done, color }) => (
-                  <div key={obj} className="group/obj flex items-start gap-4">
+                  <div key={obj} className="group/obj flex items-start gap-3 md:gap-4">
                     <div
                       className="mt-0.5 w-5 h-5 rounded shrink-0 flex items-center justify-center text-xs transition-all duration-300"
                       style={{
