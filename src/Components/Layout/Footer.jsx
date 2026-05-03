@@ -268,7 +268,7 @@ export default function Footer() {
               color: "rgba(255,255,255,0.14)",
             }}
           >
-            © 2025 Aditya. All rights reserved.
+            © 2026 Raghav Asawa. All rights reserved.
           </span>
 
           <span
@@ -282,7 +282,7 @@ export default function Footer() {
             Designed & built with intention.
           </span>
         </div>
-      </footer>
+      </footer> 
     </>
   );
 }

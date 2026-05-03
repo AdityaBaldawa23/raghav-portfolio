@@ -19,7 +19,7 @@ const skills = [
     title: "Social Media & Marketing Design",
     tag: "SOCIAL",
     image:
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
+      "https://i.pinimg.com/736x/6e/88/83/6e88831da28e75113c473235af999398.jpg",
     points: [
       "Instagram Posts & Carousels",
       "Ad Creatives & Campaign Visuals",
@@ -31,7 +31,7 @@ const skills = [
     title: "Design & Visual Communication",
     tag: "VISUAL",
     image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+      "https://i.pinimg.com/736x/bb/c6/8d/bbc68de50d90c61aec34ed82384e3171.jpg",
     points: [
       "Layout & Composition",
       "Visual Hierarchy & Storytelling",
@@ -77,36 +77,12 @@ const skills = [
 ];
 
 const tools = [
-  {
-    name: "Photoshop",
-    mastery: 95,
-    icon: "/Images/Photoshop.png",
-  },
-  {
-    name: "Illustrator",
-    mastery: 80,
-    icon: "/Images/Illustrator.png",
-  },
-  {
-    name: "Canva",
-    mastery: 95,
-    icon: "/Images/Canva.png",
-  },
-  {
-    name: "CorelDRAW",
-    mastery: 55,
-    icon: "/Images/CorelDRAW.png",
-  },
-  {
-    name: "Premiere Pro",
-    mastery: 60,
-    icon: "/Images/Premiere .png",
-  },
-  {
-    name: "After Effects",
-    mastery: 60,
-    icon: "/Images/AfterEffects.png",
-  },
+  { name: "Photoshop",    mastery: 95, icon: "/Images/Photoshop.png"  },
+  { name: "Illustrator",  mastery: 80, icon: "/Images/Illustrator.png"},
+  { name: "Canva",        mastery: 95, icon: "/Images/Canva.png"       },
+  { name: "CorelDRAW",    mastery: 55, icon: "/Images/CorelDRAW.png"   },
+  { name: "Premiere Pro", mastery: 60, icon: "/Images/Premiere .png"  },
+  { name: "After Effects",mastery: 60, icon: "/Images/AfterEffects.png"},
 ];
 
 export default function SkillsPage() {
@@ -219,7 +195,6 @@ export default function SkillsPage() {
               overflow: "hidden",
             }}
           >
-            {/* ── Layer 0: Background Image ── */}
             <div
               style={{
                 position: "absolute",
@@ -239,8 +214,6 @@ export default function SkillsPage() {
                 zIndex: 0,
               }}
             />
-
-            {/* ── Layer 1: Dark Overlay ── */}
             <div
               style={{
                 position: "absolute",
@@ -253,10 +226,7 @@ export default function SkillsPage() {
                 zIndex: 1,
               }}
             />
-
-            {/* ── Layer 2: Card Content ── */}
             <div style={{ position: "relative", zIndex: 2 }}>
-              {/* number */}
               <span
                 style={{
                   position: "absolute",
@@ -273,8 +243,6 @@ export default function SkillsPage() {
               >
                 {skill.id}
               </span>
-
-              {/* tag */}
               <p
                 style={{
                   fontSize: "9px",
@@ -289,13 +257,10 @@ export default function SkillsPage() {
               >
                 {skill.tag}
               </p>
-
-              {/* title */}
               <h3
                 style={{
                   fontFamily: "var(--font-heading)",
                   fontWeight: 500,
-
                   fontSize: "clamp(18px, 2.5vw, 26px)",
                   marginBottom: "24px",
                   lineHeight: "1.2",
@@ -308,8 +273,6 @@ export default function SkillsPage() {
               >
                 {skill.title}
               </h3>
-
-              {/* divider */}
               <div
                 style={{
                   width: hoveredSkill === skill.id ? "40px" : "24px",
@@ -322,8 +285,6 @@ export default function SkillsPage() {
                   transition: "all 0.5s ease",
                 }}
               />
-
-              {/* sub points */}
               <ul
                 style={{
                   listStyle: "none",
@@ -413,12 +374,12 @@ export default function SkillsPage() {
         </h2>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
-          {/* header row */}
+          {/* ── header row — same responsive grid as ToolRow ── */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "48px 0.7fr 320px",
-              gap: "16px",
+              gridTemplateColumns: "36px 1fr minmax(0, 1fr)",
+              gap: "clamp(10px, 2vw, 20px)",
               alignItems: "center",
               paddingBottom: "12px",
               borderBottom: "1px solid rgba(255,255,255,0.08)",
@@ -428,18 +389,18 @@ export default function SkillsPage() {
             <span />
             <span
               style={{
-                fontSize: "20px",
+                fontSize: "10px",
                 letterSpacing: "0.2em",
-                color: "rgba(255,255,255,1)",
+                color: "rgba(255,255,255,0.4)",
               }}
             >
               TOOL
             </span>
             <span
               style={{
-                fontSize: "20px",
+                fontSize: "10px",
                 letterSpacing: "0.2em",
-                color: "rgba(255,255,255,1)",
+                color: "rgba(255,255,255,0.4)",
               }}
             >
               MASTERY
@@ -497,7 +458,6 @@ export default function SkillsPage() {
               style={{
                 fontFamily: "var(--font-heading)",
                 fontWeight: 500,
-
                 fontSize: "clamp(28px, 4vw, 52px)",
                 letterSpacing: "-0.02em",
                 lineHeight: "1.15",
@@ -593,8 +553,8 @@ function ToolRow({ tool, index }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         display: "grid",
-        gridTemplateColumns: "48px 0.7fr 550px",
-        gap: "16px",
+        gridTemplateColumns: "36px 1fr minmax(0, 1fr)",
+        gap: "clamp(10px, 2vw, 20px)",
         alignItems: "center",
         padding: "20px 0",
         borderBottom: "1px solid rgba(255,255,255,0.05)",
@@ -629,7 +589,7 @@ function ToolRow({ tool, index }) {
         style={{
           fontFamily: "var(--font-heading)",
           fontWeight: 500,
-          fontSize: "clamp(16px, 2.5vw, 22px)",
+          fontSize: "clamp(15px, 2.5vw, 22px)",
           fontStyle: "italic",
           color: hovered ? "#e8e8e0" : "rgba(232,232,224,0.55)",
           transition: "color 0.3s",
@@ -640,7 +600,14 @@ function ToolRow({ tool, index }) {
       </span>
 
       {/* mastery bar */}
-      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "clamp(8px, 1.5vw, 12px)",
+          minWidth: 0,
+        }}
+      >
         <div
           style={{
             flex: 1,
@@ -648,6 +615,7 @@ function ToolRow({ tool, index }) {
             background: "rgba(255,255,255,0.08)",
             borderRadius: "99px",
             overflow: "hidden",
+            minWidth: 0,
           }}
         >
           <div
@@ -670,8 +638,7 @@ function ToolRow({ tool, index }) {
             fontSize: "10px",
             letterSpacing: "0.1em",
             color: hovered ? "#28deff" : "rgba(255,255,255,0.2)",
-            minWidth: "28px",
-            textAlign: "right",
+            flexShrink: 0,
             transition: "color 0.3s",
           }}
         >

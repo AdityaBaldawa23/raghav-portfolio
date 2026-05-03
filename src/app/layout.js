@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Raghav Asawa",
+  title: "Raghav Asawa - Portfolio",
   description: "Graphic Designer",
 };
 

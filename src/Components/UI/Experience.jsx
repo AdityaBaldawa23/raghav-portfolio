@@ -149,274 +149,196 @@ const Codename = ({ name, sub }) => (
 
 export function TimelineDemo() {
   const data = [
-    {
-      title: "2004",
-      content: (
-        <div className="space-y-5">
-          <div>
-            <p
-              className="text-xl font-light mb-1"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "rgba(255,255,255,0.8)",
-              }}
-            >
-              Born somewhere quiet.
-            </p>
-            <p
-              className="text-xs tracking-[0.15em] uppercase"
-              style={{ color: "rgba(0,229,255,0.5)" }}
-            >
-              27 July — Sangli, Maharashtra
-            </p>
-          </div>
-          <QuoteBlock>
-            Small city. Slower pace. The kind of place that teaches you to
-            observe before you speak.
-          </QuoteBlock>
-          <div className="flex gap-2 flex-wrap">
-            <Tag accent="cyan">Sangli</Tag>
-            <Tag accent="cyan">Solapur</Tag>
-            <Tag>Maharashtra</Tag>
-          </div>
+  {
+    title: "2004",
+    content: (
+      <div className="space-y-5">
+        <div>
+          <p className="text-xl font-light mb-1" style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.8)" }}>
+            Born somewhere quiet.
+          </p>
+          <p className="text-xs tracking-[0.15em] uppercase" style={{ color: "rgba(0,229,255,0.5)" }}>
+            27 July — Sangli, Maharashtra
+          </p>
         </div>
-      ),
-    },
+        <QuoteBlock>
+          Small city. Slower pace. The kind of place that teaches you to observe before you speak.
+        </QuoteBlock>
+        <div className="flex gap-2 flex-wrap">
+          <Tag accent="cyan">Sangli</Tag>
+          <Tag accent="cyan">Solapur</Tag>
+          <Tag>Maharashtra</Tag>
+        </div>
+      </div>
+    ),
+  },
 
-    {
-      title: "2019",
-      content: (
-        <div className="space-y-5">
-          <div>
-            <p
-              className="text-xl font-light mb-1"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "rgba(255,255,255,0.8)",
-              }}
-            >
-              The move.
-            </p>
-            <p
-              className="text-xs tracking-[0.15em] uppercase"
-              style={{ color: "rgba(0,229,255,0.5)" }}
-            >
-              Relocated — Pune
-            </p>
-          </div>
-          <QuoteBlock>
-            Traded quiet streets for a city that never stops asking questions.
-            It was the right call.
-          </QuoteBlock>
-          <Highlight label="New city" value="Pune" accent="cyan" />
+  // ✅ 10th Added
+  {
+    title: "2020",
+    content: (
+      <div className="space-y-5">
+        <div>
+          <p className="text-xl font-light mb-1" style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.8)" }}>
+            Foundation years.
+          </p>
+          <p className="text-xs tracking-[0.15em] uppercase" style={{ color: "rgba(0,229,255,0.5)" }}>
+            10th Completed
+          </p>
         </div>
-      ),
-    },
+        <QuoteBlock>
+          The basics were built here. Discipline, routine, and the first sense of direction.
+        </QuoteBlock>
+        <DataPill label="School" value="S.R. Chandak English High School, Solapur" />
+      </div>
+    ),
+  },
 
-    {
-      title: "2022",
-      content: (
-        <div className="space-y-5">
-          <div>
-            <p
-              className="text-xl font-light mb-1"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "rgba(255,255,255,0.8)",
-              }}
-            >
-              Built the base.
-            </p>
-            <p
-              className="text-xs tracking-[0.15em] uppercase"
-              style={{ color: "rgba(0,229,255,0.5)" }}
-            >
-              B.Voc — Graphic & Multimedia
-            </p>
-          </div>
-          <QuoteBlock>
-            Formal training in craft. Learned to see before learning to make.
-          </QuoteBlock>
-          <div className="grid grid-cols-2 gap-3">
-            <DataPill label="Institute" value="Arena Animation" />
-            <DataPill label="University" value="Pune University" />
-            <DataPill label="Field" value="Graphic & Multimedia" />
-          </div>
+  // ✅ 12th Added + Pune shift merged smartly
+  {
+    title: "2022",
+    content: (
+      <div className="space-y-5">
+        <div>
+          <p className="text-xl font-light mb-1" style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.8)" }}>
+            Transition phase.
+          </p>
+          <p className="text-xs tracking-[0.15em] uppercase" style={{ color: "rgba(0,229,255,0.5)" }}>
+            12th Completed · Shifted to Pune
+          </p>
         </div>
-      ),
-    },
+        <QuoteBlock>
+          Closed one chapter in Solapur and stepped into a bigger city with bigger questions.
+        </QuoteBlock>
+        <div className="grid grid-cols-2 gap-3">
+          <DataPill label="College" value="SES Junior College, Solapur" />
+          <DataPill label="New City" value="Pune" />
+        </div>
+      </div>
+    ),
+  },
 
-    {
-      title: "Late '22",
-      content: (
-        <div className="space-y-5">
-          <div>
-            <p
-              className="text-xl font-light mb-1"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "rgba(255,255,255,0.8)",
-              }}
-            >
-              First money.
-            </p>
-            <p
-              className="text-xs tracking-[0.15em] uppercase"
-              style={{ color: "rgba(255,255,0,0.5)" }}
-            >
-              Freelance — Real clients. Real pressure.
-            </p>
-          </div>
-          <QuoteBlock>
-            No safety net, no hand-holding. Just a brief, a deadline, and a
-            version of yourself you hadn't met yet.
-          </QuoteBlock>
-          <div className="flex gap-2 flex-wrap">
-            <Tag accent="yellow">Freelance</Tag>
-            <Tag accent="yellow">Design</Tag>
-            <Tag accent="yellow">Self-built</Tag>
-          </div>
+  // Degree stays but now clean timeline flow
+  {
+    title: "2022",
+    content: (
+      <div className="space-y-5">
+        <div>
+          <p className="text-xl font-light mb-1" style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.8)" }}>
+            Built the base.
+          </p>
+          <p className="text-xs tracking-[0.15em] uppercase" style={{ color: "rgba(0,229,255,0.5)" }}>
+            B.Voc — Graphic & Multimedia
+          </p>
         </div>
-      ),
-    },
+        <QuoteBlock>
+          Formal training in craft. Learned to see before learning to make.
+        </QuoteBlock>
+        <div className="grid grid-cols-2 gap-3">
+          <DataPill label="Institute" value="Arena Animation" />
+          <DataPill label="University" value="Pune University" />
+          <DataPill label="Field" value="Graphic & Multimedia" />
+        </div>
+      </div>
+    ),
+  },
 
-    {
-      title: "2025",
-      content: (
-        <div className="space-y-5">
-          <div>
-            <p
-              className="text-xl font-light mb-1"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "rgba(255,255,255,0.8)",
-              }}
-            >
-              Level up.
-            </p>
-            <p
-              className="text-xs tracking-[0.15em] uppercase"
-              style={{ color: "rgba(0,229,255,0.5)" }}
-            >
-              Degree completed
-            </p>
-          </div>
-          <QuoteBlock>
-            Three years condensed into a credential. But the real degree came
-            from the work done outside the classroom.
-          </QuoteBlock>
-          <Highlight
-            label="Milestone"
-            value="Bachelor of Vocation in Graphic & Multimedia"
-            accent="cyan"
-          />
+  {
+    title: "Late '22",
+    content: (
+      <div className="space-y-5">
+        <div>
+          <p className="text-xl font-light mb-1" style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.8)" }}>
+            First money.
+          </p>
+          <p className="text-xs tracking-[0.15em] uppercase" style={{ color: "rgba(255,255,0,0.5)" }}>
+            Freelance — Real clients. Real pressure.
+          </p>
         </div>
-      ),
-    },
+        <QuoteBlock>
+          No safety net, no hand-holding. Just a brief, a deadline, and a version of yourself you hadn't met yet.
+        </QuoteBlock>
+        <div className="flex gap-2 flex-wrap">
+          <Tag accent="yellow">Freelance</Tag>
+          <Tag accent="yellow">Design</Tag>
+          <Tag accent="yellow">Self-built</Tag>
+        </div>
+      </div>
+    ),
+  },
 
-    {
-      title: "May '25",
-      content: (
-        <div className="space-y-5">
-          <div>
-            <p
-              className="text-xl font-light mb-1"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "rgba(255,255,255,0.8)",
-              }}
-            >
-              Into the system.
-            </p>
-            <p
-              className="text-xs tracking-[0.15em] uppercase"
-              style={{ color: "rgba(255,255,0,0.5)" }}
-            >
-              May 2025 → May 2026
-            </p>
-          </div>
-          <QuoteBlock>
-            Internship that became full-time. Learned what it means to design
-            inside constraints — and how to push past them anyway.
-          </QuoteBlock>
-          <div className="grid grid-cols-2 gap-3">
-            <DataPill
-              label="Company"
-              value="Skillinabox Learning Solutions Private Limited"
-            />
-            <DataPill label="Duration" value="1 Year" />
-          </div>
-          <div className="flex gap-2">
-            <Tag accent="yellow">Internship → Full-time</Tag>
-          </div>
+  {
+    title: "2025",
+    content: (
+      <div className="space-y-5">
+        <div>
+          <p className="text-xl font-light mb-1" style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.8)" }}>
+            Level up.
+          </p>
+          <p className="text-xs tracking-[0.15em] uppercase" style={{ color: "rgba(0,229,255,0.5)" }}>
+            Degree completed
+          </p>
         </div>
-      ),
-    },
+        <QuoteBlock>
+          Three years condensed into a credential. But the real degree came from the work done outside the classroom.
+        </QuoteBlock>
+        <Highlight label="Milestone" value="Bachelor of Vocation in Graphic & Multimedia" accent="cyan" />
+      </div>
+    ),
+  },
 
-    {
-      title: "Ongoing",
-      content: (
-        <div className="space-y-5">
-          <div>
-            <p
-              className="text-xl font-light mb-1"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "rgba(255,255,255,0.8)",
-              }}
-            >
-              Still independent.
-            </p>
-            <p
-              className="text-xs tracking-[0.15em] uppercase"
-              style={{ color: "rgba(0,229,255,0.5)" }}
-            >
-              Freelancing — parallel, always
-            </p>
-          </div>
-          <QuoteBlock>
-            It never stopped. While everything else was happening, clients kept
-            coming. The work kept growing quietly on its own.
-          </QuoteBlock>
-          <div className="flex gap-2 flex-wrap">
-            <Tag accent="cyan">Ongoing</Tag>
-            <Tag accent="cyan">Multiple Clients</Tag>
-            <Tag accent="cyan">Independent</Tag>
-          </div>
+  {
+    title: "May '25",
+    content: (
+      <div className="space-y-5">
+        <div>
+          <p className="text-xl font-light mb-1" style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.8)" }}>
+            Into the system.
+          </p>
+          <p className="text-xs tracking-[0.15em] uppercase" style={{ color: "rgba(255,255,0,0.5)" }}>
+            May 2025 → May 2026
+          </p>
         </div>
-      ),
-    },
+        <QuoteBlock>
+          Internship that became full-time. Learned what it means to design inside constraints.
+        </QuoteBlock>
+        <div className="grid grid-cols-2 gap-3">
+          <DataPill label="Company" value="Skillinabox Learning Solutions Private Limited" />
+          <DataPill label="Duration" value="1 Year" />
+        </div>
+      </div>
+    ),
+  },
 
-    {
-      title: "2026",
-      content: (
-        <div className="space-y-5">
-          <div>
-            <p
-              className="text-xl font-light mb-1"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "rgba(255,255,255,0.8)",
-              }}
-            >
-              Something is coming.
-            </p>
-            <p
-              className="text-xs tracking-[0.15em] uppercase"
-              style={{ color: "rgba(255,255,0,0.5)" }}
-            >
-              Building something of my own
-            </p>
-          </div>
-          <QuoteBlock>
-            Not a side project. Not a portfolio piece. A studio. A direction. A
-            name that means something.
-          </QuoteBlock>
-          <Codename name="REXORY" sub="Freelance Design Studio · In Progress" />
+  {
+    title: "Ongoing",
+    content: (
+      <div className="space-y-5">
+        <p className="text-xl font-light">Still independent.</p>
+        <QuoteBlock>
+          Clients kept coming. The work kept growing quietly.
+        </QuoteBlock>
+        <div className="flex gap-2 flex-wrap">
+          <Tag accent="cyan">Freelance</Tag>
+          <Tag accent="cyan">Independent</Tag>
         </div>
-      ),
-    },
-  ];
+      </div>
+    ),
+  },
+
+  {
+    title: "2026",
+    content: (
+      <div className="space-y-5">
+        <p className="text-xl font-light">Something is coming.</p>
+        <QuoteBlock>
+          A studio. A direction. A name that means something.
+        </QuoteBlock>
+        <Codename name="REXORY" sub="Freelance Design Studio · In Progress" />
+      </div>
+    ),
+  },
+];
 
   return (
     <div className="relative w-full overflow-clip">

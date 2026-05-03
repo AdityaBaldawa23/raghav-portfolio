@@ -125,7 +125,7 @@ export default function AboutMe() {
             position: relative;
             z-index: 5;
             width: 100%;
-            height: 360px;
+            height: 420px;
             display: flex;
             align-items: flex-end;
             justify-content: center;

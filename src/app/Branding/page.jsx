@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function KokumiBrandPage() {
+  const [lightbox, setLightbox] = useState(null);
+
   useEffect(() => {
     const els = document.querySelectorAll(".fade-up");
     const observer = new IntersectionObserver(
@@ -14,6 +16,12 @@ export default function KokumiBrandPage() {
     );
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") setLightbox(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   return (
@@ -175,19 +183,6 @@ export default function KokumiBrandPage() {
           line-height: 1.85; margin-top: 18px; max-width: 680px;
         }
 
-        /* ═══════════════════════════════════════════════════════
-           MOCKUP GRID — matches Canva layout exactly
-           
-           Col widths (matching Canva visual proportions):
-             Col 1 (biz cards):  ~1.55fr  — widest single column
-             Col 2 (menu):       ~1.3fr
-             Col 3 (indian):     ~1.3fr
-             Col 4 (warm/poster):~0.85fr  — narrowest
-
-           Row structure:
-             Row 1: biz-front | menu (rowspan 2) | indian (rowspan 2) | warm-moment
-             Row 2: biz-back  |                  |                    | kokumi-poster
-        ═══════════════════════════════════════════════════════ */
         .mockup-section {
           width: 100%;
           background: var(--cream);
@@ -202,91 +197,67 @@ export default function KokumiBrandPage() {
 
         .mockup-grid {
           display: grid;
-          /* Col1 widest, Col2+3 medium, Col4 narrowest */
           grid-template-columns: 1.55fr 1.3fr 1.3fr 0.85fr;
           grid-template-rows: auto auto;
           gap: 14px;
           align-items: stretch;
         }
 
-        /* Business Card Front — Col 1, Row 1 */
-        .m-biz-front {
-          grid-column: 1;
-          grid-row: 1;
-        }
+        .m-biz-front { grid-column: 1; grid-row: 1; }
+        .m-biz-back  { grid-column: 1; grid-row: 2; }
+        .m-menu      { grid-column: 2; grid-row: 1 / 3; }
+        .m-indian    { grid-column: 3; grid-row: 1 / 3; }
+        .m-warm      { grid-column: 4; grid-row: 1; }
+        .m-japanese  { grid-column: 4; grid-row: 2; }
 
-        /* Business Card Back — Col 1, Row 2 */
-        .m-biz-back {
-          grid-column: 1;
-          grid-row: 2;
-        }
-
-        /* Full Menu — Col 2, spans Row 1+2 */
-        .m-menu {
-          grid-column: 2;
-          grid-row: 1 / 3;
-        }
-
-        /* Indian/Drinks Menu — Col 3, spans Row 1+2 */
-        .m-indian {
-          grid-column: 3;
-          grid-row: 1 / 3;
-        }
-
-        /* A Warm Moment — Col 4, Row 1 */
-        .m-warm {
-          grid-column: 4;
-          grid-row: 1;
-        }
-
-        /* Kokumi Poster / Japanese card — Col 4, Row 2 */
-        .m-japanese {
-          grid-column: 4;
-          grid-row: 2;
-        }
-
-        /* All images: fill their cell, NO border radius */
         .mock-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 0;           /* ← NO border radius */
+          border-radius: 0;
           display: block;
           box-shadow: 0 3px 14px rgba(36,29,22,0.13);
+          cursor: pointer;
+          transition: opacity 0.18s ease;
         }
+        .mock-img:hover { opacity: 0.88; }
 
-        /* Tall span cells — let image grow naturally */
-        .m-menu,
-        .m-indian {
-          display: flex;
-          flex-direction: column;
-        }
-        .m-menu .mock-img,
-        .m-indian .mock-img {
-          flex: 1;
-          object-position: top;
-        }
+        .m-menu, .m-indian { display: flex; flex-direction: column; }
+        .m-menu .mock-img, .m-indian .mock-img { flex: 1; object-position: top; }
 
-        /* Mobile: stack into 2 cols then 1 col */
         @media (max-width: 900px) {
-          .mockup-grid {
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: none;
-          }
-          .m-biz-front, .m-biz-back,
-          .m-menu, .m-indian,
-          .m-warm, .m-japanese {
-            grid-column: auto;
-            grid-row: auto;
-          }
-          .m-menu .mock-img,
-          .m-indian .mock-img {
-            height: 360px;
-          }
+          .mockup-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; }
+          .m-biz-front, .m-biz-back, .m-menu, .m-indian, .m-warm, .m-japanese { grid-column: auto; grid-row: auto; }
+          .m-menu .mock-img, .m-indian .mock-img { height: 360px; }
         }
         @media (max-width: 560px) {
           .mockup-grid { grid-template-columns: 1fr; }
         }
+
+        /* LIGHTBOX */
+        .lightbox-overlay {
+          position: fixed; inset: 0; z-index: 1000;
+          background: rgba(36,29,22,0.92);
+          display: flex; align-items: center; justify-content: center;
+          cursor: pointer;
+          animation: lb-in 0.22s ease;
+        }
+        @keyframes lb-in { from { opacity: 0; } to { opacity: 1; } }
+        .lightbox-img {
+          max-width: 92vw; max-height: 92vh;
+          object-fit: contain; display: block;
+          box-shadow: 0 8px 48px rgba(0,0,0,0.5);
+          cursor: default;
+        }
+        .lightbox-close {
+          position: fixed; top: 20px; right: 28px;
+          font-size: 32px; color: var(--peach);
+          cursor: pointer; line-height: 1;
+          font-family: var(--qs); font-weight: 300;
+          background: none; border: none; padding: 0;
+          opacity: 0.85;
+        }
+        .lightbox-close:hover { opacity: 1; }
 
         /* FOOTER */
         .footer {
@@ -315,6 +286,19 @@ export default function KokumiBrandPage() {
           opacity: 0.4; margin-top: 14px;
         }
       `}</style>
+
+      {/* LIGHTBOX — only new addition */}
+      {lightbox && (
+        <div className="lightbox-overlay" onClick={() => setLightbox(null)}>
+          <button className="lightbox-close" onClick={() => setLightbox(null)}>×</button>
+          <img
+            className="lightbox-img"
+            src={lightbox}
+            alt=""
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       <main>
         {/* HERO */}
@@ -408,63 +392,44 @@ export default function KokumiBrandPage() {
 
         <div className="divider" />
 
-        {/* ══════════════════════════════════════
-            BRAND MOCKUPS — exact Canva layout
-            Col1(wide): biz-front top, biz-back bottom
-            Col2: full menu (rowspan 2)
-            Col3: indian/drinks menu (rowspan 2)
-            Col4(narrow): warm-moment top, kokumi-poster bottom
-        ══════════════════════════════════════ */}
+        {/* BRAND MOCKUPS */}
         <div className="mockup-section fade-up">
           <p className="sec-label" style={{ letterSpacing: "0.5em" }}>Kokumi</p>
 
           <div className="mockup-grid">
 
-            {/* Col 1, Row 1 — Business Card Front */}
             <div className="m-biz-front">
-              <img className="mock-img" src="/Images/BusinessCardFront.png" alt="Business Card Front" />
+              <img className="mock-img" src="/Images/BusinessCardFront.png" alt="Business Card Front"
+                onClick={() => setLightbox("/Images/BusinessCardFront.png")} />
             </div>
 
-            {/* Col 2, Rows 1+2 — Full Menu */}
             <div className="m-menu">
-              <img className="mock-img" src="/Images/MenuFront.png" alt="Kokumi Menu" />
+              <img className="mock-img" src="/Images/MenuFront.png" alt="Kokumi Menu"
+                onClick={() => setLightbox("/Images/MenuFront.png")} />
             </div>
 
-            {/* Col 3, Rows 1+2 — Indian / Drinks Menu */}
             <div className="m-indian">
-              <img className="mock-img" src="/Images/MenuBack.png" alt="Indian and Drinks Menu" />
+              <img className="mock-img" src="/Images/MenuBack.png" alt="Indian and Drinks Menu"
+                onClick={() => setLightbox("/Images/MenuBack.png")} />
             </div>
 
-            {/* Col 4, Row 1 — A Warm Moment */}
             <div className="m-warm">
-              <img className="mock-img" src="/Images/KokumiStandee.png" alt="A Warm Moment" />
+              <img className="mock-img" src="/Images/KokumiStandee.png" alt="A Warm Moment"
+                onClick={() => setLightbox("/Images/KokumiStandee.png")} />
             </div>
 
-            {/* Col 1, Row 2 — Business Card Back */}
             <div className="m-biz-back">
-              <img className="mock-img" src="/Images/BusinessCardBack.png" alt="Business Card Back" />
+              <img className="mock-img" src="/Images/BusinessCardBack.png" alt="Business Card Back"
+                onClick={() => setLightbox("/Images/BusinessCardBack.png")} />
             </div>
 
-            {/* Col 4, Row 2 — Kokumi Poster */}
             <div className="m-japanese">
-              <img className="mock-img" src="/Images/InstagramPost.png" alt="Kokumi Instagram Post" />
+              <img className="mock-img" src="/Images/InstagramPost.png" alt="Kokumi Instagram Post"
+                onClick={() => setLightbox("/Images/InstagramPost.png")} />
             </div>
 
           </div>
         </div>
-
-        {/* FOOTER */}
-        <footer className="footer">
-          <img className="footer-logo" src="/Images/logo.png" alt="Kokumi" />
-          <p className="footer-name">KOKUMI</p>
-          <p className="footer-tag">Warm Bowls. Bold Flavours.</p>
-          <div className="footer-dots">
-            <div className="footer-dot" style={{ background: "#AA6C36" }} />
-            <div className="footer-dot" style={{ background: "#F3BE95" }} />
-            <div className="footer-dot" style={{ background: "#AA6C36" }} />
-          </div>
-          <p className="footer-copy">© 2024 Kokumi. All rights reserved.</p>
-        </footer>
       </main>
     </>
   );

@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect, useCallback } from "react";
+import HeroReel from "./HeroReel";
 
 /* ─────────────────────────────────────────────
    DATA — swap src paths to your actual images
@@ -53,30 +54,7 @@ const reelItems = [
 ];
 
 const logos = [
-  {
-    src: "/Images/Logos/logo1.png",
-    name: "Devil Scout",
-    desc: "YT Channel · Brand Identity",
-    accent: "#AA6C36",
-  },
-  {
-    src: "/Images/Logos/logo2.png",
-    name: "Rex",
-    desc: "Creative · Mark Design",
-    accent: "#2D6A4F",
-  },
-  {
-    src: "/Images/Logos/logo3.png",
-    name: "Work Space",
-    desc: "Studio · Graphics",
-    accent: "#E63946",
-  },
-  {
-    src: "/Images/Logos/logo4.png",
-    name: "Kokumi",
-    desc: "Cafe · Brand Identity",
-    accent: "#C9A84C",
-  },
+  
   {
     src: "/Images/Logos/logo5.png",
     name: "Rexory",
@@ -85,48 +63,36 @@ const logos = [
   },
   {
     src: "/Images/Logos/logo6.jpeg",
-    name: "Rajput Royals",
+    name: "iKRA Studio",
     desc: "Luxury · Monogram",
     accent: "#C9A84C",
   },
-];
-
-const socialItems = [
+  
   {
-    src: "/Images/Social/social1.jpeg",
-    tag: "Brand Campaign",
-    title: "Kokumi Launch Series",
-    span: "5",
+    src: "/Images/Logos/logo4.png",
+    name: "Kokumi",
+    desc: "Cafe · Brand Identity",
+    accent: "#C9A84C",
+  },
+  
+  {
+    src: "/Images/Logos/logo3.png",
+    name: "Work Space",
+    desc: "Studio · Graphics",
+    accent: "#E63946",
   },
   {
-    src: "/Images/Social/social2.jpeg",
-    tag: " Media",
-    title: "Event Promo",
-    span: "3",
+    src: "/Images/Logos/logo2.png",
+    name: "Land & Spice",
+    desc: "Creative · Mark Design",
+    accent: "#2D6A4F",
   },
+  
   {
-    src: "/Images/Social/social3.jpeg",
-    tag: "Campaign",
-    title: "Product Reveal",
-    span: "4",
-  },
-  {
-    src: "/Images/Social/social4.jpeg",
-    tag: "Instagram",
-    title: "Feed Post",
-    span: "3",
-  },
-  {
-    src: "/Images/Social/social5.jpeg",
-    tag: "Reel Cover",
-    title: "Motion Frame",
-    span: "4",
-  },
-  {
-    src: "/Images/Social/social6.jpeg",
-    tag: "Story",
-    title: "Story Series",
-    span: "5",
+    src: "/Images/Logos/logo1.png",
+    name: "Devil Scout",
+    desc: "YT Channel · Brand Identity",
+    accent: "#AA6C36",
   },
 ];
 
@@ -174,250 +140,6 @@ const carouselSets = [
     ],
   },
 ];
-
-/* ─────────────────────────────────────────────
-   HERO REEL CAROUSEL
-───────────────────────────────────────────── */
-function HeroReel() {
-  const [active, setActive] = useState(0);
-  const [dragging, setDragging] = useState(false);
-  const [dragStart, setDragStart] = useState(0);
-  const [dragDelta, setDragDelta] = useState(0);
-  const total = reelItems.length;
-
-  const prev = () => setActive((a) => (a - 1 + total) % total);
-  const next = () => setActive((a) => (a + 1) % total);
-
-  const onPointerDown = (e) => {
-    setDragging(true);
-    setDragStart(e.clientX);
-    setDragDelta(0);
-  };
-  const onPointerMove = (e) => {
-    if (!dragging) return;
-    setDragDelta(e.clientX - dragStart);
-  };
-  const onPointerUp = () => {
-    if (dragDelta < -60) next();
-    else if (dragDelta > 60) prev();
-    setDragging(false);
-    setDragDelta(0);
-  };
-
-  useEffect(() => {
-    const t = setInterval(next, 4000);
-    return () => clearInterval(t);
-  }, [active]);
-
-  return (
-    <section
-      style={{
-        width: "100%",
-        background: "#0a0a0a",
-        paddingTop: "130px",
-        paddingBottom: "80px",
-        overflow: "hidden",
-        userSelect: "none",
-      }}
-    >
-      {/* Section label */}
-      <div style={{ textAlign: "center", marginBottom: "48px" }}>
-        <p
-          style={{
-            fontSize: "10px",
-            letterSpacing: "0.28em",
-            color: "rgba(255,255,255,0.3)",
-            fontFamily: "var(--font-body)",
-            marginBottom: "12px",
-          }}
-        >
-          — SELECTED WORK
-        </p>
-        <h2
-          style={{
-            fontFamily: "var(--font-heading)",
-            fontSize: "clamp(36px, 6vw, 72px)",
-            fontWeight: 400,
-            color: "#e8e8e0",
-            letterSpacing: "-0.02em",
-            lineHeight: 1,
-          }}
-        >
-          The work{" "}
-          <em
-            style={{
-              color: "#28deff",
-              fontFamily: "var(--font-heading)",
-              fontStyle: "italic",
-            }}
-          >
-            speaks.
-          </em>
-        </h2>
-        <p
-          style={{
-            fontSize: "10px",
-            letterSpacing: "0.22em",
-            color: "rgba(255,255,255,0.18)",
-            marginTop: "14px",
-            fontFamily: "var(--font-body)",
-          }}
-        >
-          DRAG TO EXPLORE
-        </p>
-      </div>
-
-      {/* Filmstrip */}
-      <div
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerLeave={onPointerUp}
-        style={{ cursor: dragging ? "grabbing" : "grab", touchAction: "none" }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "20px",
-            padding: "20px 0",
-          }}
-        >
-          {reelItems.map((item, i) => {
-            const offset = i - active;
-            const isActive = offset === 0;
-            const isPrev = offset === -1 || (active === 0 && i === total - 1);
-            const isNext = offset === 1 || (active === total - 1 && i === 0);
-            const isVisible = isActive || isPrev || isNext;
-
-            let translateX = 0;
-            let scale = 0.72;
-            let opacity = 0;
-            let zIndex = 0;
-            let width = "clamp(180px, 22vw, 280px)";
-
-            if (isActive) {
-              translateX = dragDelta * 0.4;
-              scale = 1;
-              opacity = 1;
-              zIndex = 10;
-              width = "clamp(260px, 38vw, 480px)";
-            } else if (offset === -1 || (active === 0 && i === total - 1)) {
-              translateX = dragDelta * 0.15 - 20;
-              scale = 0.78;
-              opacity = 0.5;
-              zIndex = 5;
-            } else if (offset === 1 || (active === total - 1 && i === 0)) {
-              translateX = dragDelta * 0.15 + 20;
-              scale = 0.78;
-              opacity = 0.5;
-              zIndex = 5;
-            } else if (Math.abs(offset) === 2) {
-              scale = 0.62;
-              opacity = 0.2;
-              zIndex = 1;
-              translateX = offset > 0 ? 40 : -40;
-            } else {
-              opacity = 0;
-            }
-
-            return (
-              <div
-                key={i}
-                onClick={() => !dragging && setActive(i)}
-                style={{
-                  flexShrink: 0,
-                  width,
-                  transition: dragging
-                    ? "none"
-                    : "all 0.55s cubic-bezier(0.16,1,0.3,1)",
-                  transform: `translateX(${translateX}px) scale(${scale})`,
-                  opacity,
-                  zIndex,
-                  position: "relative",
-                  display: Math.abs(i - active) > 2 ? "none" : "block",
-                }}
-              >
-                <div
-                  style={{
-                    aspectRatio: "3/4",
-                    overflow: "hidden",
-                    background: "none",
-                  }}
-                >
-                  <img
-                    src={item.src}
-                    alt={item.label}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      display: "block",
-                      pointerEvents: "none",
-                    }}
-                  />
-                </div>
-                {isActive && (
-                  <div style={{ marginTop: "20px", textAlign: "center" }}>
-                    <p
-                      style={{
-                        fontSize: "9px",
-                        letterSpacing: "0.22em",
-                        color: "#28deff",
-                        fontFamily: "var(--font-body)",
-                        marginBottom: "5px",
-                      }}
-                    >
-                      {item.category}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: "var(--font-heading)",
-                        fontStyle: "italic",
-                        fontSize: "clamp(15px, 2vw, 20px)",
-                        color: "#e8e8e0",
-                      }}
-                    >
-                      {item.label}
-                    </p>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Progress indicator */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "6px",
-          marginTop: "36px",
-        }}
-      >
-        {reelItems.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActive(i)}
-            style={{
-              width: i === active ? "28px" : "6px",
-              height: "2px",
-              background: i === active ? "#28deff" : "rgba(255,255,255,0.2)",
-              border: "none",
-              cursor: "pointer",
-              padding: 0,
-              transition: "all 0.4s ease",
-              borderRadius: "99px",
-            }}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
 
 /* ─────────────────────────────────────────────
    LOGO SHOWCASE
@@ -617,7 +339,7 @@ function LogoShowcase({id}) {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                filter: hovered === i ? "brightness(1)" : "brightness(0.5)",
+                filter: hovered === i ? "brightness(1)" : "brightness(0.9)",
                 transition:
                   "filter 0.45s, transform 0.55s cubic-bezier(0.16,1,0.3,1)",
                 transform: hovered === i ? "scale(1.04)" : "scale(1)",
