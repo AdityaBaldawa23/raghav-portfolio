@@ -77,12 +77,12 @@ const skills = [
 ];
 
 const tools = [
-  { name: "Photoshop",    mastery: 95, icon: "/Images/Photoshop.png"  },
-  { name: "Illustrator",  mastery: 80, icon: "/Images/Illustrator.png"},
-  { name: "Canva",        mastery: 95, icon: "/Images/Canva.png"       },
-  { name: "CorelDRAW",    mastery: 55, icon: "/Images/CorelDRAW.png"   },
-  { name: "Premiere Pro", mastery: 60, icon: "/Images/Premiere .png"  },
-  { name: "After Effects",mastery: 60, icon: "/Images/AfterEffects.png"},
+  { name: "Photoshop", mastery: 95, icon: "/Images/Photoshop.png" },
+  { name: "Illustrator", mastery: 80, icon: "/Images/Illustrator.png" },
+  { name: "Canva", mastery: 95, icon: "/Images/Canva.png" },
+  { name: "CorelDRAW", mastery: 55, icon: "/Images/CorelDRAW.png" },
+  { name: "Premiere Pro", mastery: 60, icon: "/Images/Premiere .png" },
+  { name: "After Effects", mastery: 60, icon: "/Images/AfterEffects.png" },
 ];
 
 export default function SkillsPage() {
@@ -98,6 +98,10 @@ export default function SkillsPage() {
         overflowX: "hidden",
       }}
     >
+      <h1 className="sr-only">
+        Creative skills for modern branding, visual design and digital
+        experiences
+      </h1>
       {/* Header */}
       <div
         style={{
@@ -128,7 +132,7 @@ export default function SkillsPage() {
           />
           CAPABILITIES
         </p>
-        <h1
+        <div
           style={{
             fontSize: "clamp(42px, 8vw, 96px)",
             lineHeight: "1",
@@ -148,7 +152,7 @@ export default function SkillsPage() {
           >
             set.
           </em>
-        </h1>
+        </div>
         <p
           style={{
             fontSize: "12px",

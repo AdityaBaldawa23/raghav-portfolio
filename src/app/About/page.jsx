@@ -365,7 +365,7 @@ export default function AboutMe() {
             </div>
 
             {/* Big headline */}
-            <h1
+            <div
               style={{
                 fontFamily: "var(--font-heading)",
                 fontWeight: 300,
@@ -395,10 +395,10 @@ export default function AboutMe() {
               >
                 HITS.
               </span>
-            </h1>
+            </div>
 
             {/* Role line */}
-            <p
+            <h1
               style={{
                 fontSize: "clamp(8px, 1.5vw, 10px)",
                 letterSpacing: "0.3em",
@@ -409,7 +409,7 @@ export default function AboutMe() {
               }}
             >
               Graphic Designer · Gamer · Frame Builder
-            </p>
+            </h1>
 
             {/* Tags */}
             <div

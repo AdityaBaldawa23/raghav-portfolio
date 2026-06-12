@@ -147,6 +147,15 @@ export default function HeroSection() {
         cursor: "crosshair",
       }}
     >
+      <h1 className="sr-only">
+        Creative Portfolio of Rexory Studio Featuring Branding, Graphic Design
+        and Digital Experiences
+      </h1>
+      <p className="sr-only">
+        Rexory Studio is a creative portfolio showcasing branding, graphic
+        design, visual storytelling, and digital experiences across design and
+        gaming.
+      </p>
       {/* ── Ambient dual-sided glow ────────────────────────────────────────────── */}
       <div
         aria-hidden
@@ -311,7 +320,6 @@ export default function HeroSection() {
             flexDirection: "column",
             gap: "0.45rem",
           }}
-
           className="pt-4"
         >
           <span style={subTextStyle}>
@@ -432,7 +440,7 @@ export default function HeroSection() {
           pointerEvents: "none",
         }}
       >
-        <h1
+        <div
           className={ready ? "fade-up-1" : ""}
           style={{
             fontFamily: "var(--font-heading)",
@@ -450,7 +458,7 @@ export default function HeroSection() {
           <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.35)" }}>
             One vision.
           </em>
-        </h1>
+        </div>
 
         <p
           className={ready ? "fade-up-2" : ""}

@@ -54,7 +54,6 @@ const reelItems = [
 ];
 
 const logos = [
-  
   {
     src: "/Images/Logos/logo5.png",
     name: "Rexory",
@@ -67,14 +66,14 @@ const logos = [
     desc: "Luxury · Monogram",
     accent: "#C9A84C",
   },
-  
+
   {
     src: "/Images/Logos/logo4.png",
     name: "Kokumi",
     desc: "Cafe · Brand Identity",
     accent: "#C9A84C",
   },
-  
+
   {
     src: "/Images/Logos/logo3.png",
     name: "Work Space",
@@ -87,7 +86,7 @@ const logos = [
     desc: "Creative · Mark Design",
     accent: "#2D6A4F",
   },
-  
+
   {
     src: "/Images/Logos/logo1.png",
     name: "Devil Scout",
@@ -144,7 +143,7 @@ const carouselSets = [
 /* ─────────────────────────────────────────────
    LOGO SHOWCASE
 ───────────────────────────────────────────── */
-function LogoShowcase({id}) {
+function LogoShowcase({ id }) {
   const [hovered, setHovered] = useState(null);
   const [modal, setModal] = useState(null);
 
@@ -155,7 +154,6 @@ function LogoShowcase({id}) {
         padding: "100px clamp(24px, 6vw, 80px) 110px",
         borderTop: "1px solid rgba(255,255,255,0.04)",
       }}
-
       id={id}
     >
       {/* Modal */}
@@ -411,7 +409,7 @@ function LogoShowcase({id}) {
 /* ─────────────────────────────────────────────
    POSTER WALL
 ───────────────────────────────────────────── */
-function PosterWall({id}) {
+function PosterWall({ id }) {
   const [hovered, setHovered] = useState(null);
   const rotations = [-1.5, 0.8, -0.5, 1.2, -0.9, 0.4, -1.1, 0.7, -0.3];
 
@@ -950,6 +948,7 @@ function PhoneCarousel() {
                   <img
                     src="/Images/Logos/instalogo.png"
                     className="rounded-2xl object-cover border border-white"
+                    alt="Rexory Studio Instagram logo"
                   />
                 </div>
 
@@ -1093,9 +1092,18 @@ export default function WorkPage() {
         button:focus { outline: none; }
       `}</style>
       <main>
+        <h1 className="sr-only">
+          Portfolio Projects by Rexory Studio — Branding, Logo Design, Posters
+          and Social Media Creatives
+        </h1>
+        <p className="sr-only">
+          Rexory Studio portfolio showcases branding projects, logo design,
+          poster design, social media creatives, visual identity systems, and
+          Instagram carousel campaigns created for modern brands.
+        </p>
         <HeroReel />
         <LogoShowcase id="logo" />
-        <PosterWall id="poster"/>
+        <PosterWall id="poster" />
         <PhoneCarousel />
       </main>
     </>

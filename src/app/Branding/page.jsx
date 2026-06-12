@@ -19,7 +19,9 @@ export default function KokumiBrandPage() {
   }, []);
 
   useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") setLightbox(null); };
+    const onKey = (e) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
@@ -290,7 +292,9 @@ export default function KokumiBrandPage() {
       {/* LIGHTBOX — only new addition */}
       {lightbox && (
         <div className="lightbox-overlay" onClick={() => setLightbox(null)}>
-          <button className="lightbox-close" onClick={() => setLightbox(null)}>×</button>
+          <button className="lightbox-close" onClick={() => setLightbox(null)}>
+            ×
+          </button>
           <img
             className="lightbox-img"
             src={lightbox}
@@ -301,9 +305,18 @@ export default function KokumiBrandPage() {
       )}
 
       <main>
+        <h1 className="sr-only">
+          Kokumi Brand Identity by Rexory Studio — Logo Design, Typography,
+          Color Palette and Packaging Design
+        </h1>
         {/* HERO */}
         <section className="hero">
-          <img className="hero-bg" src="/Images/Brand_Kit_BG.png" alt="" aria-hidden="true" />
+          <img
+            className="hero-bg"
+            src="/Images/Brand_Kit_BG.png"
+            alt="Kokumi brand background featuring a warm minimalist Japanese-inspired interior"
+            aria-hidden="true"
+          />
           <div className="hero-overlay" />
           <div className="hero-content">
             <img className="hero-logo" src="/Images/logo.png" alt="Kokumi" />
@@ -316,16 +329,28 @@ export default function KokumiBrandPage() {
         <div className="logo-section fade-up">
           <div className="logo-cell logo-cell-left">
             <p className="sec-label">Logo</p>
-            <img className="primary-logo-img" src="/Images/logo.png" alt="Kokumi Logo" />
+            <img
+              className="primary-logo-img"
+              src="/Images/logo.png"
+              alt="Kokumi Logo"
+            />
           </div>
           <div className="logo-cell">
             <p className="sec-label">Logo Submark</p>
             <div className="submark-row">
               <div className="submark-item">
-                <img className="submark-logo-img" src="/Images/logoblack.png" alt="Kokumi dark submark" />
+                <img
+                  className="submark-logo-img"
+                  src="/Images/logoblack.png"
+                  alt="Kokumi dark submark"
+                />
               </div>
               <div className="submark-item">
-                <img className="submark-logo-img" src="/Images/logowhite.png" alt="Kokumi light submark" />
+                <img
+                  className="submark-logo-img"
+                  src="/Images/logowhite.png"
+                  alt="Kokumi light submark"
+                />
               </div>
             </div>
           </div>
@@ -338,11 +363,24 @@ export default function KokumiBrandPage() {
           <p className="sec-label">Colour Palette</p>
           <div className="palette-row">
             {[
-              { name: "Amber Wood",     hex: "#AA6C36", rgb: "RGB (170, 108, 54)" },
-              { name: "Espresso Brown", hex: "#5F3216", rgb: "RGB (95, 50, 22)" },
-              { name: "Pure White",     hex: "#FFFFFF", rgb: "RGB (255, 255, 255)", border: true },
-              { name: "Smoked Ebony",   hex: "#241D16", rgb: "RGB (36, 29, 22)" },
-              { name: "Peach Sand",     hex: "#F3BE95", rgb: "RGB (243, 190, 149)" },
+              { name: "Amber Wood", hex: "#AA6C36", rgb: "RGB (170, 108, 54)" },
+              {
+                name: "Espresso Brown",
+                hex: "#5F3216",
+                rgb: "RGB (95, 50, 22)",
+              },
+              {
+                name: "Pure White",
+                hex: "#FFFFFF",
+                rgb: "RGB (255, 255, 255)",
+                border: true,
+              },
+              { name: "Smoked Ebony", hex: "#241D16", rgb: "RGB (36, 29, 22)" },
+              {
+                name: "Peach Sand",
+                hex: "#F3BE95",
+                rgb: "RGB (243, 190, 149)",
+              },
             ].map((s) => (
               <div className="swatch" key={s.hex}>
                 <div
@@ -394,40 +432,64 @@ export default function KokumiBrandPage() {
 
         {/* BRAND MOCKUPS */}
         <div className="mockup-section fade-up">
-          <p className="sec-label" style={{ letterSpacing: "0.5em" }}>Kokumi</p>
+          <p className="sec-label" style={{ letterSpacing: "0.5em" }}>
+            Kokumi
+          </p>
 
           <div className="mockup-grid">
-
             <div className="m-biz-front">
-              <img className="mock-img" src="/Images/BusinessCardFront.png" alt="Business Card Front"
-                onClick={() => setLightbox("/Images/BusinessCardFront.png")} />
+              <img
+                className="mock-img"
+                src="/Images/BusinessCardFront.png"
+                alt="Business Card Front"
+                onClick={() => setLightbox("/Images/BusinessCardFront.png")}
+              />
             </div>
 
             <div className="m-menu">
-              <img className="mock-img" src="/Images/MenuFront.png" alt="Kokumi Menu"
-                onClick={() => setLightbox("/Images/MenuFront.png")} />
+              <img
+                className="mock-img"
+                src="/Images/MenuFront.png"
+                alt="Kokumi Menu"
+                onClick={() => setLightbox("/Images/MenuFront.png")}
+              />
             </div>
 
             <div className="m-indian">
-              <img className="mock-img" src="/Images/MenuBack.png" alt="Indian and Drinks Menu"
-                onClick={() => setLightbox("/Images/MenuBack.png")} />
+              <img
+                className="mock-img"
+                src="/Images/MenuBack.png"
+                alt="Indian and Drinks Menu"
+                onClick={() => setLightbox("/Images/MenuBack.png")}
+              />
             </div>
 
             <div className="m-warm">
-              <img className="mock-img" src="/Images/KokumiStandee.png" alt="A Warm Moment"
-                onClick={() => setLightbox("/Images/KokumiStandee.png")} />
+              <img
+                className="mock-img"
+                src="/Images/KokumiStandee.png"
+                alt="A Warm Moment"
+                onClick={() => setLightbox("/Images/KokumiStandee.png")}
+              />
             </div>
 
             <div className="m-biz-back">
-              <img className="mock-img" src="/Images/BusinessCardBack.png" alt="Business Card Back"
-                onClick={() => setLightbox("/Images/BusinessCardBack.png")} />
+              <img
+                className="mock-img"
+                src="/Images/BusinessCardBack.png"
+                alt="Business Card Back"
+                onClick={() => setLightbox("/Images/BusinessCardBack.png")}
+              />
             </div>
 
             <div className="m-japanese">
-              <img className="mock-img" src="/Images/InstagramPost.png" alt="Kokumi Instagram Post"
-                onClick={() => setLightbox("/Images/InstagramPost.png")} />
+              <img
+                className="mock-img"
+                src="/Images/InstagramPost.png"
+                alt="Kokumi Instagram Post"
+                onClick={() => setLightbox("/Images/InstagramPost.png")}
+              />
             </div>
-
           </div>
         </div>
       </main>

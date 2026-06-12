@@ -115,7 +115,7 @@ export const Timeline = ({ data }) => {
                 </div>
 
                 {/* Year / title — desktop */}
-                <h3
+                <div
                   className="hidden md:block md:pl-20 text-xl md:text-5xl font-light tracking-tight transition-colors duration-300"
                   style={{
                     fontFamily: "var(--font-heading)",
@@ -126,13 +126,13 @@ export const Timeline = ({ data }) => {
                   <span className="group-hover:text-white/30 transition-colors duration-500">
                     {item.title}
                   </span>
-                </h3>
+                </div>
               </div>
 
               {/* Right content column */}
               <div className="relative pl-20 pr-4 md:pl-4 w-full">
                 {/* Mobile title */}
-                <h3
+                <div
                   className="md:hidden block text-2xl mb-4 text-left font-light"
                   style={{
                     fontFamily: "var(--font-heading)",
@@ -140,7 +140,7 @@ export const Timeline = ({ data }) => {
                   }}
                 >
                   {item.title}
-                </h3>
+                </div>
 
                 {/* Subtle top rule on each card */}
                 <div className="absolute top-0 left-4 right-0 h-px bg-linear-to-r from-white/5 via-white/0 to-transparent hidden md:block" />

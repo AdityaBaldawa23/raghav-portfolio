@@ -2,15 +2,60 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 
 const reelItems = [
-  { src: "/Images/Social/social1.jpeg", label: "Wireless Ghost",      category: "Product Design",  client: "Linsoul × Thieaudio" },
-  { src: "/Images/Social/social2.jpeg", label: "Gives You Power",     category: "Social Campaign", client: "Hell Energy" },
-  { src: "/Images/Social/social3.jpeg", label: "3 Days Remaining",    category: "Event Promo",     client: "Acer × Intel" },
-  { src: "/Images/Social/social4.jpeg", label: "Drop Zone",           category: "Key Visual",      client: "PUBG" },
-  { src: "/Images/Social/social5.jpeg", label: "Raze — Boom",        category: "Fan Art",         client: "Valorant" },
-  { src: "/Images/Social/social6.jpeg", label: "Life · Death",        category: "Conceptual",      client: "Personal" },
-  { src: "/Images/Social/social7.jpeg", label: "18V Tools",           category: "Product Ad",      client: "Bosch" },
-  { src: "/Images/Social/social8.jpeg", label: "Cut. Grind. Power.",  category: "E-Commerce",      client: "Bosch × Amazon" },
-  { src: "/Images/Social/social9.jpeg", label: "A Warm Moment",       category: "Brand Identity",  client: "Kokumi" },
+  {
+    src: "/Images/Social/social1.jpeg",
+    label: "Wireless Ghost",
+    category: "Product Design",
+    client: "Linsoul × Thieaudio",
+  },
+  {
+    src: "/Images/Social/social2.jpeg",
+    label: "Gives You Power",
+    category: "Social Campaign",
+    client: "Hell Energy",
+  },
+  {
+    src: "/Images/Social/social3.jpeg",
+    label: "3 Days Remaining",
+    category: "Event Promo",
+    client: "Acer × Intel",
+  },
+  {
+    src: "/Images/Social/social4.jpeg",
+    label: "Drop Zone",
+    category: "Key Visual",
+    client: "PUBG",
+  },
+  {
+    src: "/Images/Social/social5.jpeg",
+    label: "Raze — Boom",
+    category: "Fan Art",
+    client: "Valorant",
+  },
+  {
+    src: "/Images/Social/social6.jpeg",
+    label: "Life · Death",
+    category: "Conceptual",
+    client: "Personal",
+  },
+  {
+    src: "/Images/Social/social7.jpeg",
+    label: "18V Tools",
+    category: "Product Ad",
+    client: "Bosch",
+  },
+  {
+    src: "/Images/Social/social8.jpeg",
+    label: "Cut. Grind. Power.",
+    category: "E-Commerce",
+    client: "Bosch × Amazon",
+  },
+  {
+    src: "/Images/Social/social9.jpeg",
+    label: "A Warm Moment",
+    category: "Brand Identity",
+    client: "Kokumi",
+  },
 ];
 
 /* ── tiny arrow ── */
@@ -40,9 +85,21 @@ function ArrowBtn({ dir, onClick }) {
     >
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         {dir === "left" ? (
-          <path d="M9 2L4.5 7L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M9 2L4.5 7L9 12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         ) : (
-          <path d="M5 2L9.5 7L5 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M5 2L9.5 7L5 12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         )}
       </svg>
     </button>
@@ -51,16 +108,19 @@ function ArrowBtn({ dir, onClick }) {
 
 /* ── main component ── */
 export default function HeroReel() {
-  const [active, setActive]         = useState(0);
+  const [active, setActive] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [dragDelta, setDragDelta]   = useState(0);
+  const [dragDelta, setDragDelta] = useState(0);
   const dragStartX = useRef(0);
-  const autoRef    = useRef(null);
-  const total      = reelItems.length;
+  const autoRef = useRef(null);
+  const total = reelItems.length;
 
   const resetAuto = useCallback(() => {
     clearInterval(autoRef.current);
-    autoRef.current = setInterval(() => setActive(a => (a + 1) % total), 5000);
+    autoRef.current = setInterval(
+      () => setActive((a) => (a + 1) % total),
+      5000,
+    );
   }, [total]);
 
   useEffect(() => {
@@ -69,7 +129,7 @@ export default function HeroReel() {
   }, [resetAuto]);
 
   const go = (dir) => {
-    setActive(a => (a + dir + total) % total);
+    setActive((a) => (a + dir + total) % total);
     resetAuto();
   };
 
@@ -100,6 +160,14 @@ export default function HeroReel() {
         overflow: "hidden",
       }}
     >
+      <h1 className="sr-only">Rexory Studio Portfolio</h1>
+
+      <p className="sr-only">
+        Portfolio showcasing branding projects, logo design, poster design,
+        social media creatives, marketing visuals, and digital design work
+        created by Rexory Studio.
+      </p>
+
       {/* ── HEADER ── */}
       <div
         style={{
@@ -276,7 +344,8 @@ export default function HeroReel() {
               color: "rgba(255,255,255,0.28)",
             }}
           >
-            {String(active + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+            {String(active + 1).padStart(2, "0")} /{" "}
+            {String(total).padStart(2, "0")}
           </p>
         </div>
 
@@ -304,15 +373,19 @@ export default function HeroReel() {
             {reelItems.map((it, i) => (
               <button
                 key={i}
-                onClick={() => { setActive(i); resetAuto(); }}
+                onClick={() => {
+                  setActive(i);
+                  resetAuto();
+                }}
                 style={{
                   flexShrink: 0,
                   width: "clamp(48px,9.5vw,84px)",
                   aspectRatio: "4/3",
                   overflow: "hidden",
-                  border: i === active
-                    ? "1.5px solid #28deff"
-                    : "1.5px solid rgba(255,255,255,0.07)",
+                  border:
+                    i === active
+                      ? "1.5px solid #28deff"
+                      : "1.5px solid rgba(255,255,255,0.07)",
                   background: "#111",
                   padding: 0,
                   cursor: "pointer",

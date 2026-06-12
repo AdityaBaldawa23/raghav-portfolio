@@ -14,8 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Raghav Asawa - Portfolio",
-  description: "Graphic Designer",
+  title: {
+    default: "Raghav Asawa - Portfolio",
+    template: "%s | Raghav Asawa",
+  },
+  description: "Portfolio of Raghav Asawa — Graphic Designer specializing in branding, visual identity, digital experiences, and creative storytelling."
 };
 
 export default function RootLayout({ children }) {
